@@ -5,6 +5,8 @@ AC_PREREQ(2.53)
 AC_INIT(ebview, 0.3.6, http://ebview.sourceforge.net/)
 AC_CONFIG_SRCDIR(src/ebview.c)
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+AC_CONFIG_MACRO_DIR([m4])
+LT_INIT
 AM_CONFIG_HEADER(config.h)
 ALL_LINGUAS="ja"
 AM_GLIB_GNU_GETTEXT
@@ -17,11 +19,11 @@ dnl AC_PROG_AWK
 AC_PROG_LN_S
 
 dnl Checks for libraries.
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.0.0)
+PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= 2.0.0, pangox])
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
             
-eb_LIB_EB3
+eb_LIB_EB4
 
 dnl Checks for header files.
 AC_PATH_X
