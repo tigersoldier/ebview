@@ -8,13 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-22 10:04+0800\n"
+"POT-Creation-Date: 2009-08-16 07:57+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/cellrenderercolor.c:159 src/cellrenderercolor.c:160 src/preference.c:81
+msgid "Color"
+msgstr ""
 
 #: src/cellrendererebook.c:161 src/mainwindow.c:985
 msgid "Text"
@@ -96,11 +100,11 @@ msgstr ""
 
 #. Cancelable
 #. Non-cancelable
-#: src/eb.c:1615 src/eb.c:1619
+#: src/eb.c:1617 src/eb.c:1621
 msgid "Fulltext search"
 msgstr ""
 
-#: src/ebview.c:111
+#: src/ebview.c:109
 msgid "Failed to execute command. Please check setting."
 msgstr ""
 
@@ -427,7 +431,7 @@ msgstr ""
 msgid "Please enter search word."
 msgstr ""
 
-#: src/mainwindow.c:118 src/selection.c:167 src/textview.c:84
+#: src/mainwindow.c:118 src/selection.c:169 src/textview.c:84
 #: src/thread_search.c:64 src/thread_search.c:150
 msgid "No hit."
 msgstr ""
@@ -1229,10 +1233,6 @@ msgstr ""
 
 #: src/preference.c:80
 msgid "Font"
-msgstr ""
-
-#: src/preference.c:81
-msgid "Color"
 msgstr ""
 
 #: src/preference.c:82 src/preference.c:92

@@ -74,7 +74,7 @@ static void dict_toggled(GtkWidget *widget, gpointer data)
 {
 	gboolean active;
 	gboolean button_active;
-	int i;
+	intptr_t i;
 
 	GtkTreeIter   parent_iter;
 	GtkTreeIter   child_iter;
@@ -97,7 +97,7 @@ static void dict_toggled(GtkWidget *widget, gpointer data)
 				i = 0;
 				if(gtk_tree_model_iter_children(GTK_TREE_MODEL(dict_store), &child_iter, &parent_iter) == TRUE){
 					do {
-						if(i == (int)data) {
+						if(i == (intptr_t)data) {
 							gtk_tree_store_set(dict_store, &child_iter,
 									   DICT_ACTIVE_COLUMN, button_active,
 									   -1);
@@ -123,7 +123,7 @@ static void add_dict_buttons(GtkWidget *bar)
 {
 	GtkWidget *toggle;
 	GtkWidget *label;
-	int idx;
+	intptr_t idx;
 	char name[64];
 	char buff[256];
 

@@ -18,8 +18,8 @@
 #ifndef __DEFS_H__
 #define __DEFS_H__
 
-/* Disable old GTK+ functions */
-//#define GTK_DISABLE_DEPRECATED 1
+/* for EB Library 4.4.1 or later */
+#define _FILE_OFFSET_BITS 64
 
 #include "../config.h"
 #include <sys/stat.h>
@@ -36,6 +36,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <errno.h>
+#include <stdint.h>
 
 #ifdef __WIN32__
 #define ENABLE_NLS 1

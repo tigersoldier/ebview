@@ -49,11 +49,11 @@ static gchar *replace_table[] = {
 	NULL, NULL, NULL, NULL // 13-89 - 92
  };
 
-void replace_char(const guchar *icode, const guchar *ocode, guchar **inbuf, guchar **outbuf, gint *isize, gint *osize){
+void replace_char(const guchar *icode, const guchar *ocode, guchar **inbuf, guchar **outbuf, size_t *isize, size_t *osize){
 	guchar *in, *out;
 	guchar *str;
 	guchar *utf_str;
-	gint len;
+	size_t len;
 
 	in = *inbuf;
 	out = *outbuf;
@@ -139,7 +139,7 @@ gchar *iconv_convert(const gchar *icode, const gchar *ocode, const gchar *orig){
 	}
 
 	cd = iconv_open( ocode, icode );
-	if( (int)cd == -1 ) {
+	if(cd == (iconv_t) -1 ) {
 		LOG(LOG_DEBUG, "OUT : iconv_convert() OUT3");
 		return(NULL);
 	}
@@ -228,7 +228,7 @@ gchar *iconv_convert2(const gchar *icode, const gchar *ocode, const gchar *orig)
 	}
 
 	cd = iconv_open( ocode, icode );
-	if( (int)cd == -1 ) {
+	if( cd == (iconv_t) -1 ) {
 		return(NULL);
 	}
 

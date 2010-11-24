@@ -1,20 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Japanese translation for EBview.
+# Copyright (C) 2009 Free Software Foundation, Inc.
+# Kenichi SUTO <deep_blue@users.sourceforge.net>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: EBView 0.1.6\n"
+"Project-Id-Version: EBView 0.3.6.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-22 15:46+0900\n"
+"POT-Creation-Date: 2009-08-15 09:21+0900\n"
 "PO-Revision-Date: 2004-02-15 23:28+0900\n"
-"Last-Translator: Kenichi SUTO <deep_blue@users.sourceforge.net>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Masayuki Hatta <mhatta@gnu.org>\n"
+"Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: src/cellrendererebook.c:161 src/mainwindow.c:984
+#: src/cellrenderercolor.c:159 src/cellrenderercolor.c:160 src/preference.c:81
+msgid "Color"
+msgstr "色"
+
+#: src/cellrendererebook.c:161 src/mainwindow.c:985
 msgid "Text"
 msgstr "テキスト"
 
@@ -51,28 +55,28 @@ msgid "offset"
 msgstr "オフセット"
 
 #: src/eb.c:375 src/eb.c:442 src/mainmenu.c:478 src/mainwindow.c:482
-#: src/mainwindow.c:1137
+#: src/mainwindow.c:1138
 msgid "Automatic Search"
 msgstr "おまかせ検索"
 
-#: src/eb.c:380 src/eb.c:446 src/mainmenu.c:486 src/mainwindow.c:1148
+#: src/eb.c:380 src/eb.c:446 src/mainmenu.c:486 src/mainwindow.c:1149
 msgid "Exactword Search"
 msgstr "完全一致検索"
 
-#: src/eb.c:386 src/eb.c:450 src/mainmenu.c:492 src/mainwindow.c:1160
+#: src/eb.c:386 src/eb.c:450 src/mainmenu.c:492 src/mainwindow.c:1161
 msgid "Forward Search"
 msgstr "前方一致検索"
 
-#: src/eb.c:392 src/eb.c:454 src/mainmenu.c:499 src/mainwindow.c:1172
+#: src/eb.c:392 src/eb.c:454 src/mainmenu.c:499 src/mainwindow.c:1173
 msgid "Backward Search"
 msgstr "後方一致検索"
 
-#: src/eb.c:398 src/eb.c:458 src/mainmenu.c:506 src/mainwindow.c:1184
+#: src/eb.c:398 src/eb.c:458 src/mainmenu.c:506 src/mainwindow.c:1185
 msgid "Keyword Search"
 msgstr "条件検索"
 
 #: src/eb.c:404 src/eb.c:462 src/mainmenu.c:513 src/mainwindow.c:490
-#: src/mainwindow.c:491 src/mainwindow.c:1196
+#: src/mainwindow.c:491 src/mainwindow.c:1197
 msgid "Multiword Search"
 msgstr "複合検索"
 
@@ -81,23 +85,24 @@ msgid "Full Text Search"
 msgstr "全文検索"
 
 #: src/eb.c:427 src/eb.c:480 src/mainmenu.c:547 src/mainwindow.c:481
-#: src/mainwindow.c:499 src/mainwindow.c:500 src/mainwindow.c:1223
+#: src/mainwindow.c:499 src/mainwindow.c:500 src/mainwindow.c:1224
 #: src/preference.c:94
 msgid "Internet Search"
 msgstr "インターネット検索"
 
 #: src/eb.c:431 src/eb.c:484 src/grep.c:77 src/mainmenu.c:554
-#: src/mainwindow.c:507 src/mainwindow.c:508 src/mainwindow.c:1237
+#: src/mainwindow.c:507 src/mainwindow.c:508 src/mainwindow.c:1238
 #: src/preference.c:88
 msgid "File Search"
 msgstr "ファイル検索"
 
 #. Cancelable
+#. Non-cancelable
 #: src/eb.c:1615 src/eb.c:1619
 msgid "Fulltext search"
 msgstr "全文検索"
 
-#: src/ebview.c:111
+#: src/ebview.c:109
 msgid "Failed to execute command. Please check setting."
 msgstr "コマンドを起動できませんでした。設定を確認してください。"
 
@@ -182,7 +187,7 @@ msgstr "前の見出しを表示する。"
 msgid "Go to next hit list."
 msgstr "次の見出しを表示する。"
 
-#: src/mainmenu.c:520 src/mainwindow.c:1208
+#: src/mainmenu.c:520 src/mainwindow.c:1209
 msgid "Fulltext Search"
 msgstr "全文検索"
 
@@ -389,7 +394,7 @@ msgid "Search In Popup"
 msgstr "ポップアップで検索"
 
 #. if(selection_mode == SELECTION_POPUP)
-#. 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(item), TRUE);
+#. gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(item), TRUE);
 #. Dump
 #: src/mainmenu.c:954
 msgid "Dump"
@@ -428,7 +433,7 @@ msgstr "ヘルプ"
 msgid "Please enter search word."
 msgstr "検索語を入力してください。"
 
-#: src/mainwindow.c:118 src/selection.c:167 src/textview.c:84
+#: src/mainwindow.c:118 src/selection.c:169 src/textview.c:84
 #: src/thread_search.c:64 src/thread_search.c:150
 msgid "No hit."
 msgstr "ヒットしませんでした。"
@@ -442,11 +447,11 @@ msgstr "ファイル %s を開けません。インストールが正しくない可能性があります。"
 msgid "Help will be shown in external web browser."
 msgstr "使い方はWebブラウザに表示されます。"
 
-#: src/mainwindow.c:746
+#: src/mainwindow.c:748
 msgid "Search Word"
 msgstr "検索語"
 
-#: src/mainwindow.c:767
+#: src/mainwindow.c:768
 msgid ""
 "Type word here. You can type multiple space-separated words for keyword "
 "search. For file search, specify words or regular expression."
@@ -455,51 +460,51 @@ msgstr ""
 "を入れて構いません。ファイル検索の場合には、検索語か正規表現を入れてくださ"
 "い。"
 
-#: src/mainwindow.c:783 src/multi.c:294
+#: src/mainwindow.c:784 src/multi.c:294
 msgid "Start search"
 msgstr "検索を開始"
 
-#: src/mainwindow.c:809
+#: src/mainwindow.c:810
 msgid "Select search method."
 msgstr "検索方法を指定してください。"
 
-#: src/mainwindow.c:835
+#: src/mainwindow.c:836
 msgid "When enabled, X selection is searched automatically"
 msgstr "チェックすると、Xのセレクションを自動的に検索します。"
 
-#: src/mainwindow.c:853
+#: src/mainwindow.c:854
 msgid ""
 "When enabled, result of X selection search will be shown in popup window"
 msgstr ""
 "チェックすると、Xのセレクションの自動検索結果をポップアップウィンドウに表示し"
 "ます"
 
-#: src/mainwindow.c:869
+#: src/mainwindow.c:870
 msgid "Previous Item"
 msgstr "前の項目"
 
-#: src/mainwindow.c:881
+#: src/mainwindow.c:882
 msgid "Next Item"
 msgstr "次の項目"
 
-#: src/mainwindow.c:896
+#: src/mainwindow.c:897
 msgid "show next in history"
 msgstr "次へ"
 
-#: src/mainwindow.c:907
+#: src/mainwindow.c:908
 msgid "show previous in history"
 msgstr "戻る"
 
-#: src/mainwindow.c:993
+#: src/mainwindow.c:994
 msgid "Candidate"
 msgstr "候補"
 
-#. 						rp->heading = strdup(_("menu"));
+#. rp->heading = strdup(_("menu"));
 #: src/menu.c:70
 msgid "menu"
 msgstr "メニュー"
 
-#. 						rp->heading = strdup(_("copyright"));
+#. rp->heading = strdup(_("copyright"));
 #: src/menu.c:130
 msgid "copyright"
 msgstr "著作権表示"
@@ -594,6 +599,7 @@ msgstr "副本番号が正しくありません。"
 #: src/pref_dictgroup.c:1123 src/pref_dictgroup.c:1125
 #: src/pref_dictgroup.c:1128 src/pref_dictgroup.c:1130
 #: src/pref_dictgroup.c:1200 src/pref_dictgroup.c:1525
+#, c-format
 msgid "Sample"
 msgstr "サンプル"
 
@@ -706,7 +712,7 @@ msgstr "更新"
 msgid "Choose.."
 msgstr "選択.."
 
-#. 	gtk_container_add(GTK_CONTAINER(frame), vbox);
+#. gtk_container_add(GTK_CONTAINER(frame), vbox);
 #: src/pref_external.c:80
 msgid "Play sound internally"
 msgstr "内部で音声を再生"
@@ -941,8 +947,8 @@ msgstr ""
 "セレクションを検索する場合の最小の文字数を指定します。この数よりも小さい文字"
 "列は検索されません。"
 
-#. 	gtk_box_pack_start (GTK_BOX(vbox)
-#. 			    , hbox,FALSE, FALSE, 0);
+#. gtk_box_pack_start (GTK_BOX(vbox)
+#. , hbox,FALSE, FALSE, 0);
 #: src/pref_selection.c:130
 msgid "Maximum chars for automatic lookup"
 msgstr "最大文字数"
@@ -955,8 +961,8 @@ msgstr ""
 "セレクションを検索する場合の最大の文字数を指定します。この数よりも大きい文字"
 "列は検索されません。"
 
-#. 	gtk_box_pack_start (GTK_BOX(vbox)
-#. 			    , hbox,FALSE, FALSE, 0);
+#. gtk_box_pack_start (GTK_BOX(vbox)
+#. , hbox,FALSE, FALSE, 0);
 #: src/pref_selection.c:161
 msgid "Popup window size"
 msgstr "ポップアップのサイズ"
@@ -1125,8 +1131,8 @@ msgstr "前の項目を表示"
 msgid "Show Next Text"
 msgstr "次の項目を表示"
 
-#. 	{ N_("Toggle Selection Search"), toggle_auto},
-#. 	{ N_("Toggle Popup"), toggle_popup},
+#. { N_("Toggle Selection Search"), toggle_auto},
+#. { N_("Toggle Popup"), toggle_popup},
 #: src/pref_shortcut.c:95
 msgid "Show Help"
 msgstr "ヘルプの表示"
@@ -1263,10 +1269,6 @@ msgstr "外観"
 msgid "Font"
 msgstr "フォント"
 
-#: src/preference.c:81
-msgid "Color"
-msgstr "色"
-
 #: src/preference.c:82 src/preference.c:92
 msgid "Misc."
 msgstr "その他"
@@ -1375,59 +1377,3 @@ msgstr "/検索"
 #: src/websearch.c:116 src/websearch.c:178
 msgid "Please select web site"
 msgstr "ウェブサイトを選択してください。"
-
-#~ msgid "Key : "
-#~ msgstr "キー :"
-
-#~ msgid "Search"
-#~ msgstr "検索"
-
-#~ msgid "Settings"
-#~ msgstr "設定"
-
-#~ msgid "Failed to open %s. Check installation."
-#~ msgstr ""
-#~ "%s をオープンできませんでした。正しくインストールされていない可能性があり"
-#~ "ます。"
-
-#~ msgid "Directory name"
-#~ msgstr "ディレクトリ名"
-
-#~ msgid "Show filename in list."
-#~ msgstr "検索結果一覧にファイル名を表示します。"
-
-#~ msgid "Present Results By Dictionaries"
-#~ msgstr "検索結果を辞書毎に表示"
-
-#~ msgid "Present results by dictionaries."
-#~ msgstr "検索結果を辞書毎に表示します。"
-
-#~ msgid "Emphasize search word in contents."
-#~ msgstr "検索語を強調表示します。"
-
-#~ msgid "Show image in contents."
-#~ msgstr "コンテンツ内に画像を表示します。"
-
-#~ msgid "Bring window to top"
-#~ msgstr "ウィンドウを前面に"
-
-#~ msgid "Bring main/popup windows to top"
-#~ msgstr "メイン/ポップアップウィンドウを前面に表示します。"
-
-#~ msgid "Toggle Selection Search"
-#~ msgstr "セレクション検索の切り替え"
-
-#~ msgid "Toggle Popup"
-#~ msgstr "ポップアップ表示の切り替え"
-
-#~ msgid "Debug"
-#~ msgstr "デバッグ"
-
-#~ msgid "Failed to open directory "
-#~ msgstr "ディレクトリのオープンに失敗しました。"
-
-#~ msgid "Enter or select directory name to search."
-#~ msgstr "検索するディレクトリ名を入力または選択してください。"
-
-#~ msgid "Grep Search"
-#~ msgstr "Grep 検索"

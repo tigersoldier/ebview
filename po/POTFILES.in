@@ -1,4 +1,5 @@
 src/bmh.c
+src/cellrenderercolor.c
 src/cellrendererebook.c
 src/dialog.c
 src/dictbar.c

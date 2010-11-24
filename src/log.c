@@ -63,16 +63,19 @@ void log_func(const gchar *file, gint line, LOG_LEVEL level, const gchar *messag
 
 		strcat(format, message);
 
-		va_start(ap, message);
+		va_start(ap, format);
 		g_vprintf(format, ap);
 		g_printf("\n");
 		//g_logv(G_LOG_DOMAIN, level, format, ap);
+		va_end(ap);
 	}
 
 	// Show dialog box.
 
 	if(level <= LOG_MESSAGE){
+		va_start(ap, format);
 		vsprintf(str, message, ap);
+		va_end(ap);
 
 		switch(level){
 		case LOG_ERROR:
@@ -87,7 +90,6 @@ void log_func(const gchar *file, gint line, LOG_LEVEL level, const gchar *messag
 			break;
 		}
 
-		va_end(ap);
 	}
 }
 

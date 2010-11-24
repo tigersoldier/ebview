@@ -1,3 +1,39 @@
+2009-08-16  Masayuki Hatta  <mhatta@mhatta.org>
+
+	* Version 0.3.6.2 (unofficial)
+	* src/bmh.c, src/defs.h, src/dictbar.c, src/eb.c, src/filter.c,
+	  src/grep.c, src/hook.c, src/jcode.c, src/multi.c,
+	  src/pref_color.c, src/pref_dictgroup.c, src/pref_font.c,
+	  src/shortcut.c, src/log.c : Applied 64bit fixes from OpenSUSE.
+	  https://bugzilla.novell.com/show_bug.cgi?id=242602
+
+2009-08-15  Masayuki Hatta  <mhatta@gnu.org>
+
+	* Version 0.3.6.1 (unofficial).
+	* config.guess, config.sub : copied from Debian's
+	  autotools-dev 20090611.1. 
+	* configure.in : set version to 0.3.6.1.
+	* configure.in : Added checks for Pango.
+	* configure.in : eb3 -> eb4.
+	* depcomp, install-sh, missing, mkinstalldir : copied from GNU
+          automake 1.11. 
+	* ltmain.sh : copied from GNU libtool 2.2.6.
+	* Ran aclocal, automake, autoheader and autoconf.
+	* src/Makefile.am : added Pango-related flags.
+	* src/ebview.c : removed GTK_DISABLE_DEPRECATED.
+	* src/defs.h : define _FILE_OFFSET_BITS as 64.
+	* src/popup.c, src/selection.c : Fixed popup window's behavior.
+	* ABOUT-NLS, intl/* : copied from GNU gettext 0.17.
+	* po/* : regenerated & updated.
+	* m4/Makefile.am : eb3 -> eb4.
+	* m4/ssizet.m4 : put AC_TYPE_SSIZE_T into bracket.
+	* m4/glib-gettext.m4 : copied from GLib 2.20.4.
+	* m4/pkg.m4 : copied from pkg-config 0.22.
+	* m4/eb4.m4 : replaced with eb3.m4.
+	* pixmaps/ebview-32x32.xpm : added.
+	* doc/{en,ja}/body.html : bumped version.
+	* po/POTFILES.in : regenerated.
+	
 2004-02-22  Kenichi Suto <deep_blue@users.sourceforge.net>
 	* Version 0.3.5:
 	* jcode : Katakana/Hiragana conversion fixed.

@@ -137,7 +137,7 @@ void remember_line(gchar *file, gint page, gint line, gint offset, gchar *headin
 
 	// Extract 10 characters before/ after keyword
 
-	here = simple_search(rp->word, tmp, strlen(tmp), bignore_case);
+	here = (gchar *) simple_search((guchar *) rp->word, (guchar *) tmp, strlen(tmp), bignore_case);
 	if(here != NULL){
 		p = here;
 		for(i=0; i < additional_chars ; i ++){
@@ -215,7 +215,7 @@ void grep_file(gchar *file, gchar *word, gint method){
 
 	// For higher performance, specially handle EUC and SJIS
 
-	code = guess_kanji(max_bytes_to_guess, contents);
+	code = guess_kanji(max_bytes_to_guess, (guchar *) contents);
 
 	switch(code){
 		gchar *tmp;

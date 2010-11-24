@@ -1,1 +1,1 @@
-EXTRA_DIST = eb3.m4 ssizet.m4
+EXTRA_DIST = eb4.m4 ssizet.m4

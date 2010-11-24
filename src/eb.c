@@ -674,7 +674,8 @@ EB_Error_Code ebook_my_backward_text(BOOK_INFO *binfo)
 	EB_Error_Code error_code=EB_SUCCESS;
 	EB_Position text_position;
 	char data[EB_SIZE_PAGE+4];
-	int i, length;
+	int i;
+	ssize_t length;
 
 	int start_page;
 	int end_page;
@@ -809,8 +810,8 @@ static gchar *euc2jis(gchar *inbuf){
 	guchar *jisbuf=NULL;
 	guchar *jis_p;
 
-	euc_p = inbuf;
-	jis_p = jisbuf = malloc(strlen(euc_p)*2);
+	euc_p = (guchar *) inbuf;
+	jis_p = jisbuf = malloc(strlen((gchar *) euc_p)*2);
 
 	while(*euc_p != '\0'){
 		if(( 0x20 <= *euc_p) && (*euc_p <= 0x7e) && (ascii_to_jisx2080_table[*euc_p] != 0x00)){
@@ -845,7 +846,7 @@ static gchar *euc2jis(gchar *inbuf){
 	}
 	*jis_p = '\0';
 
-	return(jisbuf);
+	return((gchar *) jisbuf);
 }
 
 static gint ebook_full_search_old(BOOK_INFO *binfo, char *word, gint method, gchar *title)
@@ -856,7 +857,8 @@ static gint ebook_full_search_old(BOOK_INFO *binfo, char *word, gint method, gch
 	char data[EB_SIZE_PAGE];
 	char *jisword;
 	char *word_p;
-	int i, length;
+	int i;
+	ssize_t length;
 	char *p;
 	char heading[MAXLEN_TEXT + 1];
 	RESULT *rp;
@@ -1053,7 +1055,7 @@ static gint ebook_full_search(BOOK_INFO *binfo, char *word, gint method, gchar *
 	char data[EB_SIZE_PAGE];
 	char *jisword;
 	char *word_p;
-	int length;
+	ssize_t length;
 	char *p;
 	char heading[MAXLEN_TEXT + 1];
 	RESULT *rp;
@@ -1086,7 +1088,7 @@ static gint ebook_full_search(BOOK_INFO *binfo, char *word, gint method, gchar *
 	jisword = euc2jis(word);
 	word_p = jisword;
 
-	bmh = bmh_prepare(jisword, TRUE);
+	bmh = bmh_prepare((guchar *) jisword, TRUE);
 
 	word_len = strlen(jisword);
 	memset(data, 0, word_len);
@@ -1119,7 +1121,7 @@ static gint ebook_full_search(BOOK_INFO *binfo, char *word, gint method, gchar *
 		start_p = data;
 		while(start_p){
 
-			start_p = bmh_search(bmh, start_p, EB_SIZE_PAGE + word_len - (start_p - data));
+			start_p = (gchar *) bmh_search(bmh, (guchar *) start_p, EB_SIZE_PAGE + word_len - (start_p - data));
 		
 			if(start_p == NULL)
 				break;
@@ -1405,7 +1407,7 @@ static void plain_heading()
 	gint len;
 	gchar *p;
 	gchar *pp;
-	guchar body[65536];
+	gchar body[65536];
 	gint i;
 	gunichar ch;
 
@@ -1679,7 +1681,8 @@ gint ebook_search_auto(char *g_word, gint method)
 gint ebook_simple_search2(BOOK_INFO *binfo, char *word, gint method, gchar *title)
 {
 	EB_Error_Code error_code=EB_SUCCESS;
-	int i, len, total_hits=0;
+	int i, total_hits=0;
+	ssize_t len;
 	EB_Hit hits[MAX_HITS];
 	int hitcount;
 	char heading[MAXLEN_HEADING + 1];
@@ -1814,7 +1817,7 @@ gint ebook_simple_search(BOOK_INFO *binfo, char *word, gint method, gchar *title
 
 	// If the keyword is Japanese, try Hiragana and Katakana
 
-	if(iseuc(word)){
+	if(iseuc((guchar *) word)){
 		l_word = g_strdup(word);
 		katakana_to_hiragana(l_word);
 		error_code = ebook_simple_search2(binfo, l_word, method, title);
@@ -1961,11 +1964,11 @@ static gint ebook_ending_search(BOOK_INFO *binfo, char *word, gint method, gchar
 
 		// If there is no hit, try using only Kanji part.
 		if((count_result(search_result) == 0) && 
-		   (iseuckanji(keywords[0]))){
+		   (iseuckanji((guchar *) keywords[0]))){
 			len_word = strlen(keywords[0]);
 			strcpy(new_key, keywords[0]);
 			for(i=0; i<len_word; i+=2){
-				if(!iseuckanji(&new_key[i])) {
+				if(!iseuckanji((guchar *) &new_key[i])) {
 					new_key[i] = '\0';
 					break;
 				}
@@ -1988,7 +1991,7 @@ static gint ebook_ending_search(BOOK_INFO *binfo, char *word, gint method, gchar
 gchar *ebook_get_heading(BOOK_INFO *binfo, int page, int offset)
 {
 	EB_Error_Code error_code;
-	int len;
+	ssize_t len;
 	char heading[MAXLEN_HEADING + 1];
 	EB_Position position;
 	gchar *p;
@@ -2021,7 +2024,7 @@ gchar *ebook_get_heading(BOOK_INFO *binfo, int page, int offset)
 
 gchar *ebook_get_text(BOOK_INFO *binfo, int page, int offset){
 	EB_Error_Code error_code;
-	int len;
+	ssize_t len;
 	char text[MAXLEN_TEXT + 1];
 	EB_Position position;
 	gchar *p;
@@ -2064,7 +2067,7 @@ gchar *ebook_get_text(BOOK_INFO *binfo, int page, int offset){
 gchar *ebook_get_candidate(BOOK_INFO *binfo, int page, int offset)
 {
 	EB_Error_Code error_code;
-	int len;
+	ssize_t len;
 	char text[MAXLEN_TEXT + 1];
 	EB_Position position;
 	gchar *p;
@@ -2374,7 +2377,7 @@ guchar *read_gaiji_as_bitmap(BOOK_INFO *binfo, gchar *name, gint size, gint *wid
 
 	image_data = malloc(image_width * image_height / 8);
 	ebook_bitmap_to_xbm(bitmap_data, image_width,
-			    image_height, image_data, &image_size);
+			    image_height, (char *) image_data, &image_size);
 	
 	*width = image_width;
 	*height = image_height;
@@ -2400,13 +2403,13 @@ static gchar **ebook_bitmap_to_xpm(const gchar *bitmap, gint width, gint height,
 		xpm[2] = g_strdup_printf(". 	c %s", color);
 
 	for (i = 0; i < gaiji_adjustment; i++) {
-		xpm[i+3] = g_new(guchar, width + 1);
+		xpm[i+3] = (gchar *) g_new(guchar, width + 1);
 		memset(xpm[i+3], ' ', width);
 		xpm[i+3][width] = '\0';
 	}
 
 	for (;i < height + gaiji_adjustment; i++) {
-		xpm[i+3] = g_new(guchar, width + 1);
+		xpm[i+3] = (gchar *) g_new(guchar, width + 1);
 		xpm_p = xpm[i+3];
 		for (j = 0; j + 7 < width; j += 8, bitmap_p++) {
 			*xpm_p++ = (*bitmap_p & 0x80) ? '.' : ' ';
@@ -2627,7 +2630,7 @@ static void ebook_bitmap_to_gif(bitmap, width, height, gif, gif_length, fg, bg)
     int width;
     int height;
     char *gif;
-    guint *gif_length;
+    size_t *gif_length;
     guint fg;
     guint bg;
 {
@@ -2800,7 +2803,7 @@ guchar *read_gaiji_as_xbm(BOOK_INFO *binfo, gchar *name, gchar *fname, guint fg,
 
 
 	ebook_bitmap_to_gif(bitmap_data, image_width,
-			    image_height, image_data, &image_size, fg, bg);
+			    image_height, (char *) image_data, &image_size, fg, bg);
 
 
 	fp = fopen(fname, "wb");
@@ -3022,7 +3025,7 @@ EB_Error_Code ebook_output_mono(BOOK_INFO *binfo, gchar *filename, gint page, gi
 	ssize_t read_length;
 	gint data_size;
 	gchar *bmp_data;
-	gint bmp_length;
+	size_t bmp_length;
 
 #ifdef COLOR_HACK
 	
