@@ -160,7 +160,6 @@ GdkPixbuf *load_xbm(BOOK_INFO *binfo, gchar *name, gint *w, gint *h, gchar *colo
 
 static void draw_string2(CANVAS *canvas, DRAW_TEXT *text, TAG *tag)
 {
-	gchar *euc_str;
 	gchar *utf_str;
 
 	gint tag_count=0;
@@ -168,8 +167,7 @@ static void draw_string2(CANVAS *canvas, DRAW_TEXT *text, TAG *tag)
 
 	//LOG(LOG_DEBUG, "IN : draw_string2()");
 
-	euc_str = g_strndup(text->text, text->length);
-	utf_str = iconv_convert("euc-jp", "utf-8", euc_str);
+	utf_str = g_strndup(text->text, text->length);
 
 	if(tag == NULL){
 		if((0 <= canvas->indent)  && (canvas->indent < MAX_INDENT)){
@@ -307,7 +305,6 @@ static void draw_string2(CANVAS *canvas, DRAW_TEXT *text, TAG *tag)
 	}
  END:
 
-	g_free(euc_str);
 	g_free(utf_str);
 
 	//LOG(LOG_DEBUG, "OUT : draw_string2()");
@@ -360,10 +357,7 @@ static void draw_string(CANVAS *canvas, DRAW_TEXT *text, TAG *tag, gchar *word)
 			}
 			
 			// For Japanese keyword
-			if(isascii(*p))
-				p++;
-			else
-				p += 2;
+      p = g_utf8_next_char(p);
 		}
 
 		if(p0 != p){

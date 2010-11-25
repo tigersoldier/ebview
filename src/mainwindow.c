@@ -1044,10 +1044,7 @@ void show_dict(RESULT *result, gboolean save_history, gboolean reverse_keyword)
 	}
 
 	if((reverse_keyword == TRUE) && (result->word != NULL)){
-		euc_str = iconv_convert("utf-8", "euc-jp", result->word);
-
-		show_text(result->data.eb.book_info, text, euc_str);
-		g_free(euc_str);
+		show_text(result->data.eb.book_info, text, result->word);
 	} else {
 		show_text(result->data.eb.book_info, text, NULL);
 	}

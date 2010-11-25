@@ -15,8 +15,11 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
+#include <iconv.h>
+#include <string.h>
 #include "defs.h"
 #include "global.h"
+#include "jcode.h"
 
 #include "eb.h"
 
@@ -57,6 +60,12 @@ static EB_Error_Code hook_modification(EB_Book *book, EB_Appendix *appendix, voi
 
 static EB_Error_Code hook_euc_to_ascii(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv);
 
+static EB_Error_Code euc_to_utf8(EB_Book *book, const char *src_code, unsigned int euc_code);
+
+static EB_Error_Code hook_jis_to_utf8(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv);
+
+static EB_Error_Code hook_gb2312_to_utf8(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv);
+
 static EB_Error_Code hook_color(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv);
 
 static EB_Error_Code hook_mono(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv);
@@ -82,7 +91,9 @@ static EB_Hook text_hooks[] = {
   {EB_HOOK_BEGIN_CANDIDATE,        hook_candidate},
   {EB_HOOK_END_CANDIDATE_LEAF,     hook_candidate},
   {EB_HOOK_END_CANDIDATE_GROUP,    hook_candidate},
-//  {EB_HOOK_NARROW_JISX0208,        hook_euc_to_ascii},
+  /* {EB_HOOK_NARROW_JISX0208,        hook_euc_to_ascii}, */
+  {EB_HOOK_WIDE_JISX0208,          hook_jis_to_utf8},
+  {EB_HOOK_GB2312,                 hook_gb2312_to_utf8},
   {EB_HOOK_BEGIN_COLOR_BMP,        hook_color},
   {EB_HOOK_BEGIN_COLOR_JPEG,       hook_color},
   {EB_HOOK_END_COLOR_GRAPHIC,      hook_color},
@@ -686,6 +697,22 @@ static EB_Error_Code hook_euc_to_ascii(EB_Book *book, EB_Appendix *appendix, voi
     }
 	
     return EB_SUCCESS;
+}
+
+static EB_Error_Code hook_euc_to_utf8(EB_Book *book, const char *src_code, unsigned int euc_code) {
+  char euc_str[3] = { (euc_code >> 8) & 0xFF, euc_code & 0xFF, '\0'};
+  char *utf_str = iconv_convert(src_code, "utf-8", euc_str);
+  eb_write_text_string(book, utf_str);
+  /* g_free(utf_str); */
+  return EB_SUCCESS;
+}
+
+static EB_Error_Code hook_jis_to_utf8(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv) {
+  return hook_euc_to_utf8(book, "euc-jp", argv[0]);
+}
+
+static EB_Error_Code hook_gb2312_to_utf8(EB_Book *book, EB_Appendix *appendix, void *container, EB_Hook_Code code, int argc, const unsigned int *argv) {
+  return hook_euc_to_utf8(book, "euc-cn", argv[0]);
 }
 
 EB_Error_Code initialize_hooksets()
